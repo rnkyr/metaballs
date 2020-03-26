@@ -24,14 +24,14 @@ public final class MetaballsView: UIView {
             ballColor: UIColor = UIColor(red: 0.16, green: 0.09, blue: 0.38, alpha: 1.00),
             numberOfBalls: Int = 4,
             frameForBall: @escaping (Int) -> CGRect = { _ in
-            let side = CGFloat.random(in: 75...175)
+            let side = 120//CGFloat.random(in: 75...175)
             return CGRect(x: .random(in: 43...201), y: .random(in: 173...548), width: side, height: side)
             }
         ) {
             self.handleSize = handleSize
             self.curvature = curvature
             self.ballColor = ballColor
-            self.numberOfBalls = numberOfBalls
+            self.numberOfBalls = 2
             self.frameForBall = frameForBall
         }
     }
@@ -67,7 +67,9 @@ public final class MetaballsView: UIView {
         }
         metaballs = (0..<config.numberOfBalls).map { index in UIView(frame: config.frameForBall(index)) }
         metaballs.forEach { ball in
-            ball.backgroundColor = config.ballColor
+            ball.backgroundColor = .clear//config.ballColor
+            ball.layer.borderColor = UIColor.black.cgColor
+            ball.layer.borderWidth = 1
             ball.layer.cornerRadius = ball.frame.width / 2
             addSubview(ball)
             ball.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(pan)))
@@ -80,8 +82,9 @@ public final class MetaballsView: UIView {
         blobLayers = (0..<config.numberOfBalls).map { _ in
             let innerList: [CAShapeLayer] = (0..<config.numberOfBalls).map { _ in
                 let layer = CAShapeLayer()
-                layer.fillColor = config.ballColor.cgColor
-                layer.fillRule = .evenOdd
+                layer.fillColor = nil//config.ballColor.cgColor
+//                layer.fillRule = .evenOdd
+                layer.strokeColor = UIColor.purple.cgColor
                 self.layer.addSublayer(layer)
                 
                 return layer
@@ -119,13 +122,128 @@ public final class MetaballsView: UIView {
         }
     }
     
+    lazy var h1: UILabel = {
+        let label = UILabel()
+        label.text = "h1"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = UIColor.blue
+        addSubview(label)
+        
+        return label
+    }()
+    lazy var h2: UILabel = {
+        let label = UILabel()
+        label.text = "h2"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = UIColor.blue
+        addSubview(label)
+        
+        return label
+    }()
+    lazy var h3: UILabel = {
+        let label = UILabel()
+        label.text = "h3"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = UIColor.blue
+        addSubview(label)
+        
+        return label
+    }()
+    lazy var h4: UILabel = {
+        let label = UILabel()
+        label.text = "h4"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = UIColor.blue
+        addSubview(label)
+        
+        return label
+    }()
+    
+    lazy var p1: UILabel = {
+        let label = UILabel()
+        label.text = "p1"
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.textColor = UIColor.red
+        addSubview(label)
+        
+        return label
+    }()
+    lazy var p2: UILabel = {
+        let label = UILabel()
+        label.text = "p2"
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.textColor = UIColor.red
+        addSubview(label)
+        
+        return label
+    }()
+    lazy var p3: UILabel = {
+        let label = UILabel()
+        label.text = "p3"
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.textColor = UIColor.red
+        addSubview(label)
+        
+        return label
+    }()
+    lazy var p4: UILabel = {
+        let label = UILabel()
+        label.text = "p4"
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.textColor = UIColor.red
+        addSubview(label)
+        
+        return label
+    }()
+    
+    lazy var ball1: UILabel = {
+        let label = UILabel()
+        label.text = "1"
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.textColor = UIColor.darkGray
+        addSubview(label)
+        
+        return label
+    }()
+    lazy var ball2: UILabel = {
+        let label = UILabel()
+        label.text = "2"
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.textColor = UIColor.darkGray
+        addSubview(label)
+        
+        return label
+    }()
+    
     private func rebuildPaths() {
         // not optimized, but could be ignored due to possible N
         for i in 0..<config.numberOfBalls {
             for j in 0..<config.numberOfBalls {
-                let lhs = metaball(from: metaballs[i])
+                var lhs = metaball(from: metaballs[i])
                 let rhs = metaball(from: metaballs[j])
                 blobLayers[i][j].path = lhs.blobPath(with: rhs)?.cgPath
+                h1.center = lhs.h1
+                h1.sizeToFit()
+                h2.center = lhs.h2
+                h2.sizeToFit()
+                h3.center = lhs.h3
+                h3.sizeToFit()
+                h4.center = lhs.h4
+                h4.sizeToFit()
+                
+                p1.center = lhs.p1
+                p1.sizeToFit()
+                p2.center = lhs.p2
+                p2.sizeToFit()
+                p3.center = lhs.p3
+                p3.sizeToFit()
+                p4.center = lhs.p4
+                p4.sizeToFit()
+                
+                ball1.center = lhs.position
+                ball1.sizeToFit()
+                ball2.center = rhs.position
+                ball2.sizeToFit()
             }
         }
     }
@@ -137,10 +255,32 @@ public final class MetaballsView: UIView {
 
         let rhs = metaball(from: metaballs[j])
         for i in 0..<config.numberOfBalls {
-            let lhs = metaball(from: metaballs[i])
+            var lhs = metaball(from: metaballs[i])
             // clean up mirrored paths
             blobLayers[j][i].path = nil
             blobLayers[i][j].path = lhs.blobPath(with: rhs)?.cgPath
+            h1.center = lhs.h1
+            h1.sizeToFit()
+            h2.center = lhs.h2
+            h2.sizeToFit()
+            h3.center = lhs.h3
+            h3.sizeToFit()
+            h4.center = lhs.h4
+            h4.sizeToFit()
+            
+            p1.center = lhs.p1
+            p1.sizeToFit()
+            p2.center = lhs.p2
+            p2.sizeToFit()
+            p3.center = lhs.p3
+            p3.sizeToFit()
+            p4.center = lhs.p4
+            p4.sizeToFit()
+            
+            ball1.center = lhs.position
+            ball1.sizeToFit()
+            ball2.center = rhs.position
+            ball2.sizeToFit()
         }
     }
     

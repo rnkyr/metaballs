@@ -15,8 +15,12 @@ struct Metaball: Equatable {
     let curvature: CGFloat
     let radius: CGFloat
     let position: CGPoint
+    // handle curve control points
+    var h1: CGPoint = .zero, h2: CGPoint = .zero, h3: CGPoint = .zero, h4: CGPoint = .zero
+    // tangent points
+    var p1: CGPoint = .zero, p2: CGPoint = .zero, p3: CGPoint = .zero, p4: CGPoint = .zero
     
-    func blobPath(with metaball: Metaball) -> UIBezierPath? {
+    mutating func blobPath(with metaball: Metaball) -> UIBezierPath? {
         let distance = position.distance(to: metaball.position)
         // this coefficient should depend on the size of balls
         let maxDistance = radius + metaball.radius * 2.4
@@ -38,12 +42,21 @@ struct Metaball: Equatable {
             u1 = 0
             u2 = 0
         }
+        let blob = Blob(
+            handleSize: handleSize, curvature: curvature,
+            metaball1: self, metaball2: metaball, distance: distance, u1: u1, u2: u2
+        )
+        h1 = blob.h1
+        h2 = blob.h2
+        h3 = blob.h3
+        h4 = blob.h4
+        p1 = blob.p1
+        p2 = blob.p2
+        p3 = blob.p3
+        p4 = blob.p4
         
         return path(
-            for: Blob(
-                handleSize: handleSize, curvature: curvature,
-                metaball1: self, metaball2: metaball, distance: distance, u1: u1, u2: u2
-            ),
+            for: blob,
             c1: position,
             c2: metaball.position
         )
