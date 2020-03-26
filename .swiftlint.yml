@@ -1,0 +1,57 @@
+disabled_rules: # rule identifiers to exclude from running
+  - notification_center_detachment
+  - identifier_name
+  - unused_setter_value # complains about overriden setter value
+  - type_name # introduced with "CS_Assignment" prefix
+
+opt_in_rules: # some rules are only opt-in
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - contains_over_first_not_nil
+  - empty_count
+  - empty_string
+  - explicit_init
+  - first_where
+  - joined_default_parameter
+  - literal_expression_end_indentation
+  - unneeded_parentheses_in_closure_argument
+  - operator_usage_whitespace
+  - private_action
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+  - vendor/bundle
+  - XCTemplates
+
+custom_rules:
+  rx_swift_debug:
+    included: ".*\\.swift"
+    name: "RxSwift debug() operator"
+    regex: "(\\.debug\\(\\))"
+    message: "Debug operation"
+
+comma: error
+force_cast: warning 
+force_try: warning
+return_arrow_whitespace: error
+
+trailing_whitespace:
+  ignores_empty_lines: true
+line_length:
+  warning: 250
+  error: 350
+type_body_length:
+  warning: 300
+  error: 400
+cyclomatic_complexity:
+  ignores_case_statements: true
+file_length:
+  warning: 500
+  error: 1000
+function_body_length:
+  warning: 80
+  error: 100
+warning_threshold: 30
+reporter: "xcode"
