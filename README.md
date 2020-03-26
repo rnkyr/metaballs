@@ -29,5 +29,5 @@ The following image demonstrates the principle behind math.
 
 <p align="center"><img src="resources/curves.png" width="70%" height="auto"></p>
 
-There're two bezier curves: from point `p1` to `p3` with control points in `h1` and `h3`, and inversed one from points `p2` to `p4` through `h2`, `h4`. Refer to [debugging](https://github.com/rnkyr/metaballs/tree/debugging-bezieri) branch to view details.
+There're two bezier curves: from point `p1` to `p3` with control points in `h1` and `h3`, and inversed one from points `p2` to `p4` through `h2`, `h4`. Refer to [debugging](https://github.com/rnkyr/metaballs/tree/debugging-bezier) branch to view details.
 
