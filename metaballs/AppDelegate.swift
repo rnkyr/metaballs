@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  metaballs
+//  Metaballs
 //
-//  Created by Roman Kyrylenko on 03.03.2020.
-//  Copyright © 2020 Roman Kyrylenko. All rights reserved.
+//  Created by Roman Kyrylenko on 6/5/18.
+//  Copyright © 2018 pr0ctopus. All rights reserved.
 //
 
 import UIKit
@@ -12,4 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        return true
+    }
 }
+

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:metaballs.xcodeproj">
+      location = "self:Metaballs.xcodeproj">
    </FileRef>
 </Workspace>
