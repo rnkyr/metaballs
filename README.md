@@ -31,7 +31,4 @@ The following image demonstrates the principle behind math.
 
 There're two bezier curves: from point `p1` to `p3` with control points in `h1` and `h3`, and inversed one from points `p2` to `p4` through `h2`, `h4`. Refer to [debugging](https://github.com/rnkyr/metaballs/tree/debugging-bezier) branch to view details.
 
-For pixel-by-pixel implementation refer to [this](
-
-) branch.
 For pixel-by-pixel implementation refer to [this](https://github.com/rnkyr/metaballs/tree/point-by-point) branch.
