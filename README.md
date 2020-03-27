@@ -11,7 +11,7 @@ Project contains example setup and separated `MetaballsView` with the implmeneta
 
 ## Overview
 
-Mostly inspired by [this](http://paperjs.org/examples/meta-balls/) work I implemented the effect utilizing Bezier curves with the help of UIKit. During the R&D process, I tried a couple of approaches (like building pixel-by-pixel, [marching squares](http://jamie-wong.com/2014/08/19/metaballs-and-marching-squares/) and some more), but due to the nature of the rendering process on a mobile platform selected one is the most efficient. Each time a user move a ball (changes its position), the host view recalculates curves for each pair of balls.
+Mostly inspired by [these](http://paperjs.org/examples/meta-balls/) [two](https://varun.ca/metaballs/) articles I implemented the effect utilizing Bezier curves with the help of UIKit. During the R&D process, I tried a couple of approaches (like building pixel-by-pixel, [marching squares](http://jamie-wong.com/2014/08/19/metaballs-and-marching-squares/) and some more), but due to the nature of the rendering process on a mobile platform selected one is the most efficient. Each time a user move a ball (changes its position), the host view recalculates curves for each pair of balls.
 
 ## Implementation details
 
