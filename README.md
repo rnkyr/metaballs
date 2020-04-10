@@ -5,7 +5,7 @@
 ![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg) ![iOS 9+](https://img.shields.io/badge/iOS-9.0-orange.svg) ![swiftlint](https://img.shields.io/badge/swiftlint-green.svg)
 
 The project demonstrates implementation of a 2D blob effect (or [metaballs](https://en.wikipedia.org/wiki/Metaballs)) written using UIKit.
-Project contains example setup and separated `MetaballsView` with the implmenetation of an effect.
+Project contains example setup and separated `MetaballsView` with the implementation of an effect.
 
 <img src="resources/example.gif" width="100%" height="auto">
 
