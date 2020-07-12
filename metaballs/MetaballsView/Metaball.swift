@@ -55,12 +55,12 @@ struct Metaball: Equatable {
         path.move(to: c1)
         path.addLine(to: blob.p1)
         path.addCurve(to: blob.p3, controlPoint1: blob.h1, controlPoint2: blob.h3)
+        
         path.addLine(to: c2)
         
-        path.move(to: c1)
-        path.addLine(to: blob.p2)
-        path.addCurve(to: blob.p4, controlPoint1: blob.h2, controlPoint2: blob.h4)
-        path.addLine(to: c2)
+        path.addLine(to: blob.p4)
+        path.addCurve(to: blob.p2, controlPoint1: blob.h4, controlPoint2: blob.h2)
+        path.addLine(to: c1)
         
         return path
     }
