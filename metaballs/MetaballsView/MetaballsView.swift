@@ -81,7 +81,6 @@ public final class MetaballsView: UIView {
             let innerList: [CAShapeLayer] = (0..<config.numberOfBalls).map { _ in
                 let layer = CAShapeLayer()
                 layer.fillColor = config.ballColor.cgColor
-                layer.fillRule = .evenOdd
                 self.layer.addSublayer(layer)
                 
                 return layer
